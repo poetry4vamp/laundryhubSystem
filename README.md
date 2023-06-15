@@ -4,7 +4,7 @@ Members:
 
     Oseo, Leah
     
-    San Jose, Alexanda
+    San Jose, Alexandra
     
     Ubaldo, Allana Grace
     
