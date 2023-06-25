@@ -48,4 +48,4 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
 
           password: admin123
 
-### See the website by clicking the home button, after you login. Basically, dapat admin dashboard ang lalabas after you login, pero to access the site itself na rin, naglagay na ako ng route for the website (home.ejs) na na-access na when you click the home button sa admin dashboard  
+### See the website by clicking the home button, after you login. Basically, dapat admin dashboard ang lalabas after you login, pero to access the site itself na rin, naglagay na ako ng route for the website (home.ejs) na na-access na when you click the home button sa admin dashboard (see the route code sa router.js)
