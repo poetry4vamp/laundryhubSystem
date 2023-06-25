@@ -35,6 +35,15 @@ router.get('/home', (req, res) => {
     }
 })
 
+// route for reservation
+router.get('/reservation', (req, res) => {
+    if(req.session.user){
+        res.render('reservation')
+    }else{
+        res.send("Unauthorized User.")
+    }
+})
+
 // route for logout
 router.get('/logout', (req ,res)=>{
     req.session.destroy(function(err){
