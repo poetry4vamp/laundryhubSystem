@@ -31,7 +31,7 @@ PS. sa baba nito, diyan din gagawa ng schema para sa db natin, like this
 ```mongodb+srv://oseoleah:<password>@cluster0.534kjgp.mongodb.net/nandy```
 
 ### Go back to the terminal and type,
-```prisma db push``
+```prisma db push```
 
 ### Then type,
 ```prisma generate client```
