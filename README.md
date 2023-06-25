@@ -12,20 +12,20 @@ This command will install all the dependancies in the project.
 ```provider = "mongodb"```
 PS. sa baba nito, diyan din gagawa ng schema para sa db natin, like this 
 
-model reservation { 
+     model reservation { 
 
-     id String @id @default(auto()) @map("_id") @db.ObjectId 
+          id String @id @default(auto()) @map("_id") @db.ObjectId 
 
-     firstname String? 
+          firstname String? 
  
-     middlename String? 
+          middlename String? 
 
-     lastname String? 
+          lastname String? 
 
-     createdAt DateTime @default(now()) 
+          createdAt DateTime @default(now()) 
 
-     updatedAt DateTime @default(now()) 
- } 
+          updatedAt DateTime @default(now()) 
+      } 
 
 ### Modify the database_url @ .env file, type the url of your database from your MongoDB account, in my case it's,
 ```mongodb+srv://oseoleah:<password>@cluster0.534kjgp.mongodb.net/nandy```
@@ -33,3 +33,19 @@ model reservation {
 ### Go back to the terminal and type,
 ```prisma db push``
 
+### Then type,
+```prisma generate client```
+
+### To start the application, type
+```npm start```
+
+### Open your browser then type
+```localhost:3000```
+
+     admin credentials:
+
+          email: admin@gmail.com
+
+          password: admin123
+
+### See the website by clicking the home button, after you login. Basically, dapat admin dashboard ang lalabas after you login, pero to access the site itself na rin, naglagay na ako ng route for the website (home.ejs) na na-access na when you click the home button sa admin dashboard  
