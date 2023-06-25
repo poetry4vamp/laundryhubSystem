@@ -1,11 +1,35 @@
-# laundryhubSystem
+# Nandy Laundry Hub Management System
+This is the project for IT Project Management. 
 
-Members:
+### To run the project open the terminal and type,
+``` npm install ```
+This command will install all the dependancies in the project.
 
-    Oseo, Leah
-    
-    San Jose, Alexandra
-    
-    Ubaldo, Allana Grace
-    
-    Soria, Carlos
+### To run the MongoDB database, type, 
+``` npx prisma init ```
+
+### Modify the database provider @ schema.prisma,
+```provider = "mongodb"```
+PS. sa baba nito, diyan din gagawa ng schema para sa db natin, like this 
+
+model reservation { 
+
+     id String @id @default(auto()) @map("_id") @db.ObjectId 
+
+     firstname String? 
+ 
+     middlename String? 
+
+     lastname String? 
+
+     createdAt DateTime @default(now()) 
+
+     updatedAt DateTime @default(now()) 
+ } 
+
+### Modify the database_url @ .env file, type the url of your database from your MongoDB account, in my case it's,
+```mongodb+srv://oseoleah:<password>@cluster0.534kjgp.mongodb.net/nandy```
+
+### Go back to the terminal and type,
+```prisma db push``
+
