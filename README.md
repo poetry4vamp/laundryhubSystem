@@ -10,7 +10,7 @@ This command will install all the dependancies in the project.
 
 ### Modify the database provider @ schema.prisma,
 ```provider = "mongodb"```
-PS. sa baba nito, diyan din gagawa ng schema para sa db natin, like this 
+PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like this 
 
      model reservation { 
 
