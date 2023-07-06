@@ -1,0 +1,155 @@
+<%- include('header') -%>
+
+<body>
+    <!-- NAVIGATION BAR, LAHAT NG LINKS -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="home.html"><span class="text-secondary">NANDY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/route/home">Services</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#services">Reservation</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://maps.app.goo.gl/gZUHKY4czbAoKzpv5" target="_blank">Location</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="section-header pb-2">
+                    <h3><strong>Reservation Form</strong></h3>
+                </div>
+            </div>
+            <form>
+                <div class="border border-dark p-2 mb-2 border-opacity-50 rounded p-3">
+                    <form action="/reservation" method="POST">
+                        <div class="row mb-3 pt-3">
+                          <label for="name" class="col-sm-2 col-form-label">Name</label>
+                          <div class="col-sm-6">
+                            <input type="text" class="form-control" id="name" name="name">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="services" class="col-sm-2 col-form-label">Services</label>
+                          <div class="col-sm-6">
+                            <select id="services" class="form-select" name="services">
+                                <option disabled selected value>Choose...</option>
+                                <option value="Normal Wash">Normal Wash</option>
+                                <option value="Power Wash">Power Wash</option>
+                                <option value="Dry">Dry</option>
+                                <option value="Fold">Fold</option>
+                                <option value="Wash and Fold">Wash and Fold</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="row mb-3 pb-3">
+                            <label for="size" class="col-sm-2 col-form-label">Size</label>
+                            <div class="col-sm-6">
+                              <select id="size" class="form-select" name="size">
+                                  <option disabled selected value>Choose...</option>
+                                  <option value="8kg below">8kg below</option>
+                                  <option value="8kg to 10kg">8kg to 10kg</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr class="hr" />
+
+                        <!--Order Details start-->
+                        <div class="col-md-12">
+                            <div class="section-header pb-2">
+                                <h5><strong>Order Details</strong></h5>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                        <div class="col-md-5 ps-5">
+                            <label for="products" class="form-label">Products</label>
+                            <select id="products" class="form-select" name="products">
+                                <option disabled selected value>Choose...</option>
+                                <option value="Airiel Sunrise Fresh Liquid Detergent">Airiel Sunrise Fresh Liquid Detergent</option>
+                                <option value="Airiel Hygiene Pro Liquid Detergent">Airiel Hygiene Pro Liquid Detergent</option>
+                                <option value="Airiel Passion Liquid Detergent">Airiel Passion Liquid Detergent</option>
+                                <option value="Breeze Power Machine Liquid Detergent (BLUE)">Breeze Power Machine Liquid Detergent (BLUE)</option>
+                                <option value="Breeze Power Machine Liquid Detergent (PINK)">Breeze Power Machine Liquid Detergent (PINK)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 ps-5">
+                            <label for="qty" class="form-label">Quantity</label>
+                            <select id="qty" class="form-select" name="qty">
+                              <option disabled selected value>Choose...</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 ps-5">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" disabled>
+                        </div>
+                        </div>
+
+                        <hr class="hr" />
+
+                        <!--Delivery Type start-->
+                        <div class="col-md-12">
+                            <div class="section-header pb-2">
+                                <h5><strong>Delivery Type</strong></h5>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-5 ps-5">
+                                <label for="delivery" class="form-label"></label>
+                                <select id="delivery" class="form-select" name="delivery">
+                                    <option disabled selected value>Choose...</option>
+                                    <option value="Self service">Self service</option>
+                                    <option value="Drop-off service">Drop-off service</option>
+                                    <option value="Pick up">Pick up</option>
+                                    <option value="Pick-up and Delivery">Pick-up and Delivery</option>
+                                </select>
+                            </div>
+                            </div>
+
+                        <hr class="hr" />
+
+                        <!--Order Charges start-->
+                        <div class="col-md-12">
+                            <div class="section-header pb-2">
+                                <h5><strong>Order Charges</strong></h5>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 pb-3">
+                        <div class="col-md-5 ps-5">
+                            <label for="subtotal" class="form-label">Subtotal</label>
+                            <input type="text" class="form-control" id="subtotal" name="subtotal" disabled>
+                        </div>
+                        <div class="col-md-5 ps-5">
+                            <label for="deliveryfee" class="form-label">Delivery Fee</label>
+                            <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" disabled>
+                        </div>
+                        </div>
+
+                        <!--Submit button-->
+                        <div class="text-center mx-auto mb-3 mt-3">
+                            <button class="btn btn-dark text-white" type="submit" value="submit">Submit</button>
+                            <a style="color: #000;" class="btn btn-dark text-white" href="/route/home">Go Back</a>
+                        </div>
+                    </form>
+                </div>
+        </form>
+        </div>
+    </section>
+    
+    
+<%- include('footer') -%>

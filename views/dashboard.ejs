@@ -1,0 +1,87 @@
+<%- include('header') -%>
+
+<body>
+    <!-- NAVIGATION BAR, LAHAT NG LINKS -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/route/dashboard"><span class="text-secondary">NANCY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/route/reservation">Reservation</a>
+					</li>
+          <li class="nav-item">
+						<a class="nav-link" href="/route/logout">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <section class="about welcome-bg section-padding" id="about">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="section-header pb-2">
+                    <h4>Nandy Hub Laundry Dashboard</h4>
+                    <h6><%= locals.user ? user : "User" %></h6>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <table class="table" id="reserveTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Services</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Delivery type</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Delivery fee</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% allreservations.forEach((reserve) => { %>
+                    <tr style="text-align: center; vertical-align: middle;">
+                      <td>
+                        <%= reserve.name %>
+                      </td>
+                      <td>
+                        <%= reserve.services %>
+                      </td>
+                      <td>
+                        <%= reserve.size %>
+                      </td>
+                      <td>
+                        <%= reserve.products %>
+                      </td>
+                      <td>
+                        <%= reserve.quantity %>
+                      </td>
+                      <td>
+                        <%= reserve.price %>
+                      </td>
+                      <td>
+                        <%= reserve.delivery %>
+                      </td>
+                      <td>
+                        <%= reserve.subtotal %>
+                      </td>
+                      <td>
+                        <%= reserve.deliveryfee %>
+                      </td>
+                    </tr>
+                </tbody>
+                <% }) %>
+              </table>
+        </div>
+    </section>
+</body>
+
+<%- include('footer') -%>
