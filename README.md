@@ -12,20 +12,33 @@ This command will install all the dependancies in the project.
 ```provider = "mongodb"```
 PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like this 
 
+     // This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+     generator client {
+       provider = "prisma-client-js"
+     }
+
+     datasource db {
+       provider = "mongodb"
+       url      = env("DATABASE_URL")
+     }
+
      model reservation { 
 
-          id String @id @default(auto()) @map("_id") @db.ObjectId 
-
-          firstname String? 
- 
-          middlename String? 
-
-          lastname String? 
-
-          createdAt DateTime @default(now()) 
-
-          updatedAt DateTime @default(now()) 
-      } 
+           id String @id @default(auto()) @map("_id") @db.ObjectId 
+           name String?
+           services String?
+           size Int?
+           products String?
+           quantity String?
+           price Int?
+           delivery String?
+           subtotal Int?
+           deliveryfee Int?
+           createdAt DateTime @default(now()) 
+           updatedAt DateTime @default(now()) 
+       } 
 
 ### Modify the database_url @ .env file, type the url of your database from your MongoDB account, type the password of your database in the password field, remove the <>, in my case it's,
 ```mongodb+srv://oseoleah:<password>@cluster0.534kjgp.mongodb.net/nandy```
