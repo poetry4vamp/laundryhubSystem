@@ -40,7 +40,7 @@
                         <div class="row mb-3">
                           <label for="services" class="col-sm-2 col-form-label">Services</label>
                           <div class="col-sm-6">
-                            <select id="services" class="form-select" name="services">
+                            <select id="haha" class="form-select" name="haha" onchange="calculatePrice()">
                                 <option disabled selected value>Choose...</option>
                                 <option value="Normal Wash">Normal Wash</option>
                                 <option value="Power Wash">Power Wash</option>
@@ -53,7 +53,7 @@
                         <div class="row mb-3 pb-3">
                             <label for="size" class="col-sm-2 col-form-label">Size</label>
                             <div class="col-sm-6">
-                              <select id="size" class="form-select" name="size">
+                              <select id="size" class="form-select" name="size" onchange="calculatePrice()">
                                   <option disabled selected value>Choose...</option>
                                   <option value="8kg below">8kg below</option>
                                   <option value="8kg to 10kg">8kg to 10kg</option>
@@ -73,7 +73,7 @@
                         <div class="row g-3">
                         <div class="col-md-5 ps-5">
                             <label for="products" class="form-label">Products</label>
-                            <select id="products" class="form-select" name="products">
+                            <select id="products" class="form-select" name="products" onchange="calculatePrice()">
                                 <option disabled selected value>Choose...</option>
                                 <option value="Airiel Sunrise Fresh Liquid Detergent">Airiel Sunrise Fresh Liquid Detergent</option>
                                 <option value="Airiel Hygiene Pro Liquid Detergent">Airiel Hygiene Pro Liquid Detergent</option>
@@ -84,8 +84,8 @@
                         </div>
                         <div class="col-md-2 ps-5">
                             <label for="qty" class="form-label">Quantity</label>
-                            <select id="qty" class="form-select" name="qty">
-                              <option disabled selected value>Choose...</option>
+                            <select id="qty" class="form-select" name="qty" onchange="calculatePrice()">
+                              <option disabled selected value>Choose</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -110,7 +110,7 @@
                         <div class="row g-3">
                             <div class="col-md-5 ps-5">
                                 <label for="delivery" class="form-label"></label>
-                                <select id="delivery" class="form-select" name="delivery">
+                                <select id="delivery" class="form-select" name="delivery" onchange="calculatePrice()">
                                     <option disabled selected value>Choose...</option>
                                     <option value="Self service">Self service</option>
                                     <option value="Drop-off service">Drop-off service</option>
@@ -142,8 +142,7 @@
 
                         <!--Submit button-->
                         <div class="text-center mx-auto mb-3 mt-3">
-                            <button class="btn btn-dark text-white" type="submit" value="submit">Submit</button>
-                            <a style="color: #000;" class="btn btn-dark text-white" href="/route/home">Go Back</a>
+                            <input class="btn btn-dark text-white" type="submit" value="Submit">
                         </div>
                     </form>
                 </div>
@@ -151,5 +150,83 @@
         </div>
     </section>
     
-    
-<%- include('footer') -%>
+    <!-- footer starts -->
+	<footer class="bg-dark p-2 text-center">
+		<div class="container">
+			<p class="text-white">All Right Reserved By @Group6 IPM 2022-2023</p>
+		</div>
+	</footer>
+</body>
+
+<script>
+    function calculatePrice() {
+      // Get the selected product, quantity, service, size, and delivery type
+      var productSelect = document.getElementById("products");
+      var qtySelect = document.getElementById("qty");
+      var serviceSelect = document.getElementById("haha");
+      var sizeSelect = document.getElementById("size");
+      var deliverySelect = document.getElementById("delivery");
+  
+      var selectedProduct = productSelect.value;
+      var selectedQty = parseInt(qtySelect.value);
+      var selectedService = serviceSelect.value;
+      var selectedSize = sizeSelect.value;
+      var selectedDelivery = deliverySelect.value;
+  
+      // Define the prices for each product
+      var productPrices = {
+        "Airiel Sunrise Fresh Liquid Detergent": 10,
+        "Airiel Hygiene Pro Liquid Detergent": 15,
+        "Airiel Passion Liquid Detergent": 12,
+        "Breeze Power Machine Liquid Detergent (BLUE)": 8,
+        "Breeze Power Machine Liquid Detergent (PINK)": 8,
+      };
+  
+      // Define the prices for each service
+      var servicePrices = {
+        "Normal Wash": 60,
+        "Power Wash": 80,
+        "Dry": 50,
+        "Fold": 30,
+        "Wash and Fold": 120,
+      };
+  
+      // Define the prices for each size
+      var sizePrices = {
+        "8kg below": 60,
+        "8kg to 10kg": 80,
+      };
+  
+      // Define the delivery fees based on the delivery type
+      var deliveryFees = {
+        "Self service": 0,
+        "Drop-off service": 40,
+        "Pick up": 0,
+        "Pick-up and Delivery": 80,
+      };
+  
+      // Calculate the price based on the selected product, quantity, service, and size
+      var productPrice = productPrices[selectedProduct] || 0;
+      var servicePrice = servicePrices[selectedService] || 0;
+      var sizePrice = sizePrices[selectedSize] || 0;
+      var deliveryFee = deliveryFees[selectedDelivery] || 0;
+  
+      var totalPrice = productPrice * selectedQty;
+      var subtotal = servicePrice + sizePrice + totalPrice + deliveryFee;
+      var totalWithDelivery = deliveryFee;
+  
+      // Update the price input fields
+      var priceInput = document.getElementById("price");
+      priceInput.value = totalPrice.toFixed(2); // Set the price with 2 decimal places
+  
+      var subtotalInput = document.getElementById("subtotal");
+      subtotalInput.value = subtotal.toFixed(2);
+  
+      var deliveryFeeInput = document.getElementById("deliveryfee");
+      deliveryFeeInput.value = totalWithDelivery.toFixed(2);
+    }
+  </script>
+  
+  
+  
+  
