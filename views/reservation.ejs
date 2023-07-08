@@ -4,11 +4,11 @@
     <!-- NAVIGATION BAR, LAHAT NG LINKS -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><span class="text-secondary">NANDY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<a class="navbar-brand" href="/home"><span class="text-secondary">NANDY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="/route/home">Services</a>
+						<a class="nav-link" href="/home">Services</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#services">Reservation</a>
@@ -28,9 +28,8 @@
                     <h3><strong>Reservation Form</strong></h3>
                 </div>
             </div>
-            <form>
                 <div class="border border-dark p-2 mb-2 border-opacity-50 rounded p-3">
-                    <form action="/reservation" method="POST">
+                    <form action="/reservation" method="post">
                         <div class="row mb-3 pt-3">
                           <label for="name" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-6">
@@ -40,7 +39,7 @@
                         <div class="row mb-3">
                           <label for="services" class="col-sm-2 col-form-label">Services</label>
                           <div class="col-sm-6">
-                            <select id="haha" class="form-select" name="haha" onchange="calculatePrice()">
+                            <select id="haha" class="form-select" name="services" onchange="calculatePrice()">
                                 <option disabled selected value>Choose...</option>
                                 <option value="Normal Wash">Normal Wash</option>
                                 <option value="Power Wash">Power Wash</option>
@@ -75,7 +74,6 @@
                             <label for="products" class="form-label">Products</label>
                             <select id="products" class="form-select" name="products" onchange="calculatePrice()">
                                 <option disabled selected value>Choose...</option>
-                                <!-- dinagdagan ko ng none kasi wala namang products ang wash and fold-->
                                 <option value="None (Dry and Fold)">None (Dry and Fold)</option>
                                 <option value="Airiel Sunrise Fresh Liquid Detergent">Airiel Sunrise Fresh Liquid Detergent</option>
                                 <option value="Airiel Hygiene Pro Liquid Detergent">Airiel Hygiene Pro Liquid Detergent</option>
@@ -86,9 +84,8 @@
                         </div>
                         <div class="col-md-2 ps-5">
                             <label for="qty" class="form-label">Quantity</label>
-                            <select id="qty" class="form-select" name="qty" onchange="calculatePrice()">
+                            <select id="qty" class="form-select" name="quantity" onchange="calculatePrice()">
                               <option disabled selected value>Choose</option>
-                              <!-- dinagdagan ko ng 0 kasi wala namang products ang wash and fold-->
                               <option value="0">0 (Dry and Fold)</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
@@ -99,7 +96,8 @@
                         </div>
                         <div class="col-md-3 ps-5">
                             <label for="price" class="form-label">Price</label>
-                            <input type="text" class="form-control" id="price" name="price" disabled>
+                            <input type="text" class="form-control" id="price" name="price" readonly>
+                            <input type="hidden" id="hiddenPrice" name="hiddenPrice" value="0">
                         </div>
                         </div>
 
@@ -116,8 +114,8 @@
                                 <label for="delivery" class="form-label"></label>
                                 <select id="delivery" class="form-select" name="delivery" onchange="calculatePrice()">
                                     <option disabled selected value>Choose...</option>
-                                    <option value="Self service">Self service</option>
-                                    <option value="Drop-off service">Drop-off service</option>
+                                    <option value="Self service">Self-Service</option>
+                                    <option value="Drop-off service">Drop-off Service</option>
                                     <option value="Pick up">Pick up</option>
                                     <option value="Pick-up and Delivery">Pick-up and Delivery</option>
                                 </select>
@@ -136,31 +134,26 @@
                         <div class="row g-3 pb-3">
                         <div class="col-md-5 ps-5">
                             <label for="subtotal" class="form-label">Subtotal</label>
-                            <input type="text" class="form-control" id="subtotal" name="subtotal" disabled>
+                            <input type="text" class="form-control" id="subtotal" name="subtotal" readonly>
+                            <input type="hidden" id="hiddenSubtotal" name="hiddenSubtotal" value="0">
                         </div>
                         <div class="col-md-5 ps-5">
                             <label for="deliveryfee" class="form-label">Delivery Fee</label>
-                            <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" disabled>
+                            <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" readonly>
+                            <input type="hidden" id="hiddenDeliveryFee" name="hiddenDeliveryFee" value="0">
                         </div>
                         </div>
 
                         <!--Submit button-->
                         <div class="text-center mx-auto mb-3 mt-3">
-                            <input class="btn btn-dark text-white" type="submit" value="Submit">
+                            <button type="submit" class="btn btn-dark text-white" value="submit">Continue</button>
                         </div>
                     </form>
                 </div>
-        </form>
         </div>
     </section>
     
-    <!-- footer starts -->
-	<footer class="bg-dark p-2 text-center">
-		<div class="container">
-			<p class="text-white">All Right Reserved By @Group6 IPM 2022-2023</p>
-		</div>
-	</footer>
-</body>
+<%- include('footer') -%>
 
 <script>
     function calculatePrice() {
@@ -229,6 +222,16 @@
   
       var deliveryFeeInput = document.getElementById("deliveryfee");
       deliveryFeeInput.value = totalWithDelivery.toFixed(2);
+
+      // Update the hidden fields with the calculated values
+        var hiddenPriceInput = document.getElementById("hiddenPrice");
+        hiddenPriceInput.value = totalPrice.toFixed(2);
+
+        var hiddenSubtotalInput = document.getElementById("hiddenSubtotal");
+        hiddenSubtotalInput.value = subtotal.toFixed(2);
+
+        var hiddenDeliveryFeeInput = document.getElementById("hiddenDeliveryFee");
+        hiddenDeliveryFeeInput.value = deliveryFee.toFixed(2);
     }
   </script>
   
