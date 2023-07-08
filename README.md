@@ -29,12 +29,10 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
        size String?
        products String?
        quantity String?
-       price String?
+       price Float?
        delivery String?
-       subtotal String?
-       deliveryfee String?
-       //createdAt DateTime @default(now()) 
-       //updatedAt DateTime @default(now()) 
+       subtotal Float?
+       deliveryfee Float? 
        
        } 
 
