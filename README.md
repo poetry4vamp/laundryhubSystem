@@ -26,15 +26,15 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
            id String @id @default(auto()) @map("_id") @db.ObjectId 
            name String?
            services String?
-           size Int?
+           size String?
            products String?
            quantity String?
-           price Int?
+           price String?
            delivery String?
-           subtotal Int?
-           deliveryfee Int?
-           createdAt DateTime @default(now()) 
-           updatedAt DateTime @default(now()) 
+           subtotal String?
+           deliveryfee String?
+           //createdAt DateTime @default(now()) 
+           //updatedAt DateTime @default(now()) 
        } 
 
 ### Modify the database_url @ .env file, type the url of your database from your MongoDB account, type the password of your database in the password field, remove the <>, in my case it's,
