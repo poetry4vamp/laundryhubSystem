@@ -57,6 +57,15 @@ router.get('/home', (req, res) => {
   }
 });
 
+// Route for charts
+router.get('/charts', (req, res) => {
+  if (req.session.user) {
+    res.render('charts');
+  } else {
+    res.send("Unauthorized User.");
+  }
+});
+
 // Route for reservation
 router.get('/reservation', (req, res) => {
   if (req.session.user) {
