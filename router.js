@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 router.post('/login', (req, res) => {
   if (req.body.email == credential.email && req.body.password == credential.password) {
     req.session.user = req.body.email;
-    res.redirect('/route/dashboard');
+    res.redirect('/dashboard');
   } else {
     res.end("Invalid User.");
   }
@@ -40,8 +40,8 @@ router.get('/dashboard', async (req, res) => {
 
 async function getAllReservations() {
   try {
-    const reservations = await prisma.reservation.findMany();
-    return reservations;
+    const reservation = await prisma.reservations.findMany();
+    return reservation;
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch reservations.');
@@ -61,6 +61,72 @@ router.get('/home', (req, res) => {
 router.get('/reservation', (req, res) => {
   if (req.session.user) {
     res.render('reservation');
+  } else {
+    res.send("Unauthorized User.");
+  }
+});
+
+// Route for submitting reservation
+router.post('/reservation', async (req, res) => {
+  if (req.session.user) {
+    try {
+      const {
+        name,
+        services,
+        size,
+        products,
+        quantity,
+        delivery,
+      } = req.body;
+
+      const price = parseFloat(req.body.price);
+      const subtotal = parseFloat(req.body.subtotal);
+      const deliveryfee = parseFloat(req.body.deliveryfee);
+
+      const reserve = await prisma.reservations.create({
+        data: {
+          name,
+          services,
+          size,
+          products,
+          quantity,
+          price: price || '0',
+          delivery,
+          subtotal: subtotal || '0',
+          deliveryfee: deliveryfee || '0',
+        },
+      });
+
+      console.log('Reservation created successfully!');
+      res.redirect('/dashboard');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal server error.');
+    }
+  } else {
+    res.send("Unauthorized User.");
+  }
+});
+
+// Route for deleting a reservation
+router.post('/reservation/delete', async (req, res) => {
+  if (req.session.user) {
+    try {
+      const reservationId = req.body.id;
+
+      // Delete the reservation based on the provided reservationId
+      await prisma.reservations.delete({
+        where: {
+          id: reservationId,
+        },
+      });
+
+      console.log('Reservation deleted successfully!');
+      res.redirect('/dashboard');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal server error.');
+    }
   } else {
     res.send("Unauthorized User.");
   }
