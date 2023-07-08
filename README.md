@@ -21,20 +21,21 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
        url      = env("DATABASE_URL")
      }
 
-     model reservation { 
+      model reservation { 
 
-           id String @id @default(auto()) @map("_id") @db.ObjectId 
-           name String?
-           services String?
-           size String?
-           products String?
-           quantity String?
-           price String?
-           delivery String?
-           subtotal String?
-           deliveryfee String?
-           //createdAt DateTime @default(now()) 
-           //updatedAt DateTime @default(now()) 
+       id String @id @default(auto()) @map("_id") @db.ObjectId 
+       name String?
+       services String?
+       size String?
+       products String?
+       quantity String?
+       price String?
+       delivery String?
+       subtotal String?
+       deliveryfee String?
+       //createdAt DateTime @default(now()) 
+       //updatedAt DateTime @default(now()) 
+       
        } 
 
 ### Modify the database_url @ .env file, type the url of your database from your MongoDB account, type the password of your database in the password field, remove the <>, in my case it's,
