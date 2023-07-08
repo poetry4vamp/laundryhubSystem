@@ -17,8 +17,8 @@ exports.postReservation = async (req, res) => {
             delivery,
             subtotal,
             deliveryfee,
-            createdAT,
-            updatedAT,
+            createdAt, // Corrected property name
+            updatedAt, // Corrected property name
         } = req.body;
 
         const reserve = await prisma.reservation.create({
@@ -32,8 +32,8 @@ exports.postReservation = async (req, res) => {
                 delivery,
                 subtotal,
                 deliveryfee,
-                createdAT,
-                updatedAT,
+                createdAt, // Corrected property name
+                updatedAt, // Corrected property name
             },
         });
 
