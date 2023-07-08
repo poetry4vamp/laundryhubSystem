@@ -59,6 +59,7 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
 
 ### Everytime you change or modify the schema.prisma make sure to run these on the terminal,
 ```npx prisma generate``` 
-Then,
+
+### Then,
 ```npx prisma db push``` 
 
