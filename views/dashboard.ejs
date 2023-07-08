@@ -4,10 +4,10 @@
     <!-- NAVIGATION BAR, LAHAT NG LINKS -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/dashboard"><span class="text-secondary">NANCY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<a class="navbar-brand" href="/dashboard"><span class="text-secondary">NANDY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item">
+          <li class="nav-item">
 						<a class="nav-link" href="/charts">Charts</a>
 					</li>
 					<li class="nav-item">
@@ -49,6 +49,7 @@
                     <th scope="col">Delivery Type</th>
                     <th scope="col">Subtotal</th>
                     <th scope="col">Delivery Fee</th>
+                    <th scope="col">Date and Time</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -82,7 +83,14 @@
                       <td>
                         <%= reserve.deliveryfee %>
                       </td>
-                      <!-- dito yung sinasabi ni liya na update kineso na button -->
+                      <td>
+                       <% if (reserve.datetime) { %>
+                          <%= reserve.datetime.toLocaleString() %>
+                        <% } else { %>
+                          N/A
+                        <% } %>
+                      </td> 
+                      <!-- Dito yung sinasabi ni liya na update kineso na button -->
                       <td style="vertical-align: middle;">
                         <form action="/reservation/delete" method="post">
                           <input type="hidden" name="id" value="<%= reserve.id %>">
