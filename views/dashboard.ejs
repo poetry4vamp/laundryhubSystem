@@ -43,7 +43,7 @@
                     <th scope="col">Delivery type</th>
                     <th scope="col">Subtotal</th>
                     <th scope="col">Delivery fee</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -75,6 +75,10 @@
                       </td>
                       <td>
                         <%= reserve.deliveryfee %>
+                      </td>
+                      <!-- dito yung sinasabi ni liya na update kineso na button -->
+                      <td>
+                        <button class="btn btn-dark text-white"><i class="bi bi-arrow-up-right-square"></i></button>
                       </td>
                     </tr>
                   <% }) %>
