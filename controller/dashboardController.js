@@ -2,29 +2,29 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 exports.getDashboard = async (req, res) => {
-  const userId = session.userId;
+  const userId = req.session.userId; // Assuming user ID is stored in the session
   if (!userId) {
     res.redirect('/');
     return;
   }
 
   try {
-    const user = await prisma.User.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         id: userId,
       },
     });
 
-    const allreservations = await prisma.reservation.findMany();
+    const allreservations = await prisma.reservation.findMany(); // Fetch all reservations
 
-    const reserve = await prisma.reservation.findMany({
+    const reserves = await prisma.reservation.findMany({
       where: {
         userId: userId,
       },
     });
 
     console.log(allreservations);
-    res.render('dashboard', { user, allreservations, reserve });
+    res.render('dashboard', { user, allreservations: allreservations, reserves }); // Pass allreservations variable
     
   } catch (error) {
     console.error(error);
