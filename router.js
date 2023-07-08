@@ -40,27 +40,27 @@ router.get('/dashboard', async (req, res) => {
 
 async function getAllReservations() {
   try {
-    const reservation = await prisma.reservations.findMany();
-    return reservation;
+    const reservations = await prisma.reservation.findMany();
+    return reservations;
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch reservations.');
   }
 }
 
-// Route for home
-router.get('/home', (req, res) => {
+// Route for charts
+router.get('/charts', (req, res) => {
   if (req.session.user) {
-    res.render('home');
+    res.render('charts');
   } else {
     res.send("Unauthorized User.");
   }
 });
 
-// Route for charts
-router.get('/charts', (req, res) => {
+// Route for home
+router.get('/home', (req, res) => {
   if (req.session.user) {
-    res.render('charts');
+    res.render('home');
   } else {
     res.send("Unauthorized User.");
   }
@@ -86,23 +86,25 @@ router.post('/reservation', async (req, res) => {
         products,
         quantity,
         delivery,
+        datetime,
       } = req.body;
 
       const price = parseFloat(req.body.price);
       const subtotal = parseFloat(req.body.subtotal);
       const deliveryfee = parseFloat(req.body.deliveryfee);
 
-      const reserve = await prisma.reservations.create({
+      const reserve = await prisma.reservation.create({
         data: {
           name,
           services,
           size,
           products,
           quantity,
-          price: price || '0',
+          price: price || null,
           delivery,
-          subtotal: subtotal || '0',
-          deliveryfee: deliveryfee || '0',
+          subtotal: subtotal || null,
+          deliveryfee: deliveryfee || null,
+          datetime: new Date(datetime),
         },
       });
 
@@ -124,7 +126,7 @@ router.post('/reservation/delete', async (req, res) => {
       const reservationId = req.body.id;
 
       // Delete the reservation based on the provided reservationId
-      await prisma.reservations.delete({
+      await prisma.reservation.delete({
         where: {
           id: reservationId,
         },
