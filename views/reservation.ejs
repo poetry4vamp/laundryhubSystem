@@ -109,14 +109,14 @@
                                 <h5><strong>Delivery Type</strong></h5>
                             </div>
                         </div>
-                        <div class="row g-3">
+                        <div class="row g-1">
                             <div class="col-md-5 ps-5">
                                 <label for="delivery" class="form-label"></label>
                                 <select id="delivery" class="form-select" name="delivery" onchange="calculatePrice()">
                                     <option disabled selected value>Choose...</option>
-                                    <option value="Self service">Self-Service</option>
-                                    <option value="Drop-off service">Drop-off Service</option>
-                                    <option value="Pick up">Pick up</option>
+                                    <option value="Self Service">Self-Service</option>
+                                    <option value="Drop-off Service">Drop-off Service</option>
+                                    <option value="Pick Up">Pick up</option>
                                     <option value="Pick-up and Delivery">Pick-up and Delivery</option>
                                 </select>
                             </div>
@@ -142,8 +142,15 @@
                             <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" readonly>
                             <input type="hidden" id="hiddenDeliveryFee" name="hiddenDeliveryFee" value="0">
                         </div>
+                        <div class="col-md-5 ps-5">
+                            <label for="datetime" class="form-label">Date and Time</label>
+                            <div class="row-md-6 ps-6">
+                              <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+                            </div>
+                        </div>
                         </div>
 
+                    
                         <!--Submit button-->
                         <div class="text-center mx-auto mb-3 mt-3">
                             <button type="submit" class="btn btn-dark text-white" value="submit">Continue</button>
@@ -197,9 +204,9 @@
   
       // Define the delivery fees based on the delivery type
       var deliveryFees = {
-        "Self service": 0,
-        "Drop-off service": 40,
-        "Pick up": 0,
+        "Self Service": 0,
+        "Drop-off Service": 40,
+        "Pick Up": 0,
         "Pick-up and Delivery": 80,
       };
   
