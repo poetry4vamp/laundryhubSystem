@@ -32,9 +32,10 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
        price Float?
        delivery String?
        subtotal Float?
-       deliveryfee Float? 
+       deliveryfee Float?
+       datetime DateTime?
        
-       } 
+     } 
 
 ### Modify the database_url @ .env file, type the url of your database from your MongoDB account, type the password of your database in the password field, remove the <>, in my case it's,
 ```mongodb+srv://oseoleah:<password>@cluster0.534kjgp.mongodb.net/nandy```
