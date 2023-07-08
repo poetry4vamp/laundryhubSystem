@@ -15,9 +15,9 @@ exports.getDashboard = async (req, res) => {
       },
     });
 
-    const allreservations = await prisma.reservation.findMany(); // Fetch all reservations
+    const allreservations = await prisma.reservations.findMany(); // Fetch all reservations
 
-    const reserves = await prisma.reservation.findMany({
+    const reserves = await prisma.reservations.findMany({
       where: {
         userId: userId,
       },
