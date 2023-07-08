@@ -75,6 +75,8 @@
                             <label for="products" class="form-label">Products</label>
                             <select id="products" class="form-select" name="products" onchange="calculatePrice()">
                                 <option disabled selected value>Choose...</option>
+                                <!-- dinagdagan ko ng none kasi wala namang products ang wash and fold-->
+                                <option value="None (Dry and Fold)">None (Dry and Fold)</option>
                                 <option value="Airiel Sunrise Fresh Liquid Detergent">Airiel Sunrise Fresh Liquid Detergent</option>
                                 <option value="Airiel Hygiene Pro Liquid Detergent">Airiel Hygiene Pro Liquid Detergent</option>
                                 <option value="Airiel Passion Liquid Detergent">Airiel Passion Liquid Detergent</option>
@@ -86,6 +88,8 @@
                             <label for="qty" class="form-label">Quantity</label>
                             <select id="qty" class="form-select" name="qty" onchange="calculatePrice()">
                               <option disabled selected value>Choose</option>
+                              <!-- dinagdagan ko ng 0 kasi wala namang products ang wash and fold-->
+                              <option value="0">0 (Dry and Fold)</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -175,6 +179,7 @@
   
       // Define the prices for each product
       var productPrices = {
+        "None (Dry and Fold)": 0,
         "Airiel Sunrise Fresh Liquid Detergent": 10,
         "Airiel Hygiene Pro Liquid Detergent": 15,
         "Airiel Passion Liquid Detergent": 12,
