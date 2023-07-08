@@ -25,7 +25,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use('/route', router);
+app.use('/', router);
 
 // base route
 app.get('/', (req, res) =>{
