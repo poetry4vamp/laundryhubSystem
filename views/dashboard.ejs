@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                   <% allreservations.forEach((reserve) => { %>
-                    <tr style="text-align: center; vertical-align: middle;">
+                    <tr>
                       <td>
                         <%= reserve.name %>
                       </td>
@@ -77,8 +77,8 @@
                         <%= reserve.deliveryfee %>
                       </td>
                     </tr>
+                  <% }) %>
                 </tbody>
-                <% }) %>
               </table>
         </div>
     </section>
