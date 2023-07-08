@@ -57,7 +57,8 @@ PS. sa baba nito, diyan din gagawa ng reservation schema para sa db natin, like 
 
           password: admin123
 
-### See the website by clicking the home button, after you login. Basically, dapat admin dashboard ang lalabas after you login, pero to access the site itself na rin, naglagay na ako ng route for the website (home.ejs) na na-access na when you click the home button sa admin dashboard (see the route code sa router.js)
+### Everytime you change or modify the schema.prisma make sure to run these on the terminal,
+```npx prisma generate``` 
+Then,
+```npx prisma db push``` 
 
-### additional, if need ng update sa db type nyo lang to
-```npx prisma db push```
