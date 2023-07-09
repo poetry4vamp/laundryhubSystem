@@ -63,3 +63,6 @@ This command will install all the dependancies in the project.
 ### Then,
 ```npx prisma db push``` 
 
+### QR code integration
+```npm i qrcode```
+
