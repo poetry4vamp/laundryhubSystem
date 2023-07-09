@@ -4,7 +4,7 @@
     <!-- NAVIGATION BAR, LAHAT NG LINKS -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/dashboard"><span class="text-secondary">NANCY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+			<a class="navbar-brand" href="/dashboard"><span class="text-secondary">NANDY's</span> HUB</a> <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -84,20 +84,18 @@
                         <%= reserve.deliveryfee %>
                       </td>
                       <td>
-                        <% if (reserve.datetime) { %>
-                           <%= reserve.datetime.toLocaleString() %>
-                         <% } else { %>
-                           N/A
-                         <% } %>
-                       </td>
-                      <!-- dito yung sinasabi ni liya na update kineso na button -->
-                      <form action="/reservation/delete" method="post">
+                       <% if (reserve.datetime) { %>
+                          <%= reserve.datetime.toLocaleString() %>
+                        <% } else { %>
+                          N/A
+                        <% } %>
+                      </td> 
                       <td style="vertical-align: middle;">
+                        <form action="/reservation/delete" method="post">
                           <input type="hidden" name="id" value="<%= reserve.id %>">
-                          <button type="submit" class="btn btn-dark text-white"><i class="bi bi-arrow-up-right-square"></i></button>
-                          <!-- <button type="submit" class="btn btn-dark btn-sm">Done</button> -->
+                          <button type="submit" class="btn btn-dark btn-sm">Done</button>
+                        </form>
                       </td>
-                    </form>
                     </tr>
                   <% }) %>
                 </tbody>
@@ -117,6 +115,7 @@
       }
     });
   });
+  
 </script>
 
 <%- include('footer') -%>
