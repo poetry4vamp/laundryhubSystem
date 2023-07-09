@@ -69,7 +69,9 @@ router.get('/home', (req, res) => {
 // Route for reservation
 router.get('/reservation', (req, res) => {
   if (req.session.user) {
-    res.render('reservation');
+    const qrCodeUrl = null; // Set the initial value of qrCodeUrl to null
+
+    res.render('reservation', { qrCodeUrl: qrCodeUrl });
   } else {
     res.send("Unauthorized User.");
   }
@@ -86,30 +88,31 @@ router.post('/reservation', async (req, res) => {
         products,
         quantity,
         delivery,
-        datetime,
+        price,
+        subtotal,
+        deliveryfee
       } = req.body;
 
-      const price = parseFloat(req.body.price);
-      const subtotal = parseFloat(req.body.subtotal);
-      const deliveryfee = parseFloat(req.body.deliveryfee);
-
-      const reserve = await prisma.reservation.create({
+      // Save the reservation data to the database
+      const reservation = await prisma.reservation.create({
         data: {
           name,
           services,
           size,
           products,
           quantity,
-          price: price || null,
+          price: parseFloat(price),
           delivery,
-          subtotal: subtotal || null,
-          deliveryfee: deliveryfee || null,
-          datetime: new Date(datetime),
+          subtotal: parseFloat(subtotal),
+          deliveryfee: parseFloat(deliveryfee)
         },
       });
 
-      console.log('Reservation created successfully!');
-      res.redirect('/dashboard');
+      // Generate the QR code
+      const qrCodeData = JSON.stringify(req.body);
+      const qrCodeUrl = await QRCode.toDataURL(qrCodeData);
+
+      res.render('reservation', { qrCodeUrl: qrCodeUrl }); // Pass qrCodeUrl as a variable to the template
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal server error.');
