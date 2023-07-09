@@ -92,12 +92,13 @@ router.post('/reservation', async (req, res) => {
         products,
         quantity,
         delivery,
-        price,
-        subtotal,
-        deliveryfee
+        datetime,
       } = req.body;
 
-      // Save the reservation data to the database
+      const price = parseFloat(req.body.price);
+      const subtotal = parseFloat(req.body.subtotal);
+      const deliveryfee = parseFloat(req.body.deliveryfee);
+
       const reservation = await prisma.reservation.create({
         data: {
           name,
@@ -105,10 +106,11 @@ router.post('/reservation', async (req, res) => {
           size,
           products,
           quantity,
-          price: parseFloat(price),
+          price: price || null,
           delivery,
-          subtotal: parseFloat(subtotal),
-          deliveryfee: parseFloat(deliveryfee)
+          subtotal: subtotal || null,
+          deliveryfee: deliveryfee || null,
+          datetime: new Date(datetime),
         },
       });
 
@@ -153,12 +155,12 @@ router.post('/reservation/delete', async (req, res) => {
 // Route for logout
 router.get('/logout', (req, res) => {
   req.session.destroy(function (err) {
-    if (err) {
-      console.log(err);
-      res.send("Error");
-    } else {
-      res.render('base', { title: "Express", logout: "Logout Successfully!" });
-    }
+      if (err) {
+          console.log(err);
+          res.send("Error");
+      } else {
+          res.redirect('/');
+      }
   });
 });
 
