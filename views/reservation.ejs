@@ -157,10 +157,59 @@
                         </div>
                     </form>
                 </div>
+        <!-- QR code modal -->
+      <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="qrCodeModalLabel">QR Code</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="<%= qrCodeUrl || '' %>" alt="QR Code" id="qrCodeImage">
+            </div>
+            <div class="modal-footer">
+              <a href="<%= qrCodeUrl || '' %>" download="reservation_qr_code.png" class="btn btn-primary">Download QR Code</a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
     
 <%- include('footer') -%>
+
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const submitBtn = document.getElementById('submitBtn');
+      const qrCodeImage = document.getElementById('qrCodeImage');
+
+      // Attach click event listener to the submit button
+      submitBtn.addEventListener('click', async () => {
+        // Perform form submission using AJAX or fetch API
+        const formData = new FormData(document.querySelector('form'));
+        const response = await fetch('/reservation', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+
+          // Update the QR code image source
+          qrCodeImage.src = responseData.qrCodeUrl;
+
+          // Open the QR code modal
+          const qrCodeModal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
+          qrCodeModal.show();
+        } else {
+          console.error('Reservation submission failed');
+        }
+      });
+    });
+  </script>
 
 <script>
     function calculatePrice() {
