@@ -149,44 +149,45 @@
                             <input type="hidden" id="hiddenDeliveryFee" name="hiddenDeliveryFee" value="0">
                         </div>
                         </div>
-
-                        <hr class="hr" />
-
-                        <div class="col-md-12">
-                            <div class="section-header pb-2">
-                                <h5><strong>QR Code</strong></h5>
-                            </div>
-                        </div>
-
-                    
+			<% if (qrCodeUrl) { %> <!-- Check if qrCodeUrl is not null -->
+		            <div class="row justify-content-center mt-4">
+		              <div class="col-md-6">
+		                <div class="border border-dark p-2 mb-2 border-opacity-50 rounded p-3">
+		                  <div class="text-center">
+		                    <img id="qrCode" src="<%= qrCodeUrl %>" alt="QR Code">
+		                  </div>
+		                  <div class="text-center mt-3">
+		                    <a href="#" onclick="downloadQRCode()" class="btn btn-primary">Download QR Code</a>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		            <% } %> <!-- End of QR code div -->  
                         <!--Submit button-->
                         <div class="text-center mx-auto mb-3 mt-3">
                             <button type="submit" class="btn btn-dark text-white" value="submit">Continue</button>
                         </div>
                     </form>
                 </div>
-        <!-- QR code modal -->
-      <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="qrCodeModalLabel">QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-              <img src="<%= qrCodeUrl || '' %>" alt="QR Code" id="qrCodeImage">
-            </div>
-            <div class="modal-footer">
-              <a href="<%= qrCodeUrl || '' %>" download="reservation_qr_code.png" class="btn btn-primary">Download QR Code</a>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
     
 <%- include('footer') -%>
+
+<script>
+  function downloadQRCode() {
+    // Get the QR code image element
+    var qrCodeImage = document.getElementById('qrCode');
+    
+    // Create a temporary anchor element to download the QR code
+    var link = document.createElement('a');
+    link.href = qrCodeImage.src;
+    link.download = 'qr-code.png';
+    
+    // Trigger the download
+    link.click();
+  }
+</script>
 
 <script>
     // Wait for the DOM to be fully loaded
