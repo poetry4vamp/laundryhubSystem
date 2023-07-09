@@ -37,12 +37,6 @@
                           </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="datetime" class="col-sm-2 col-form-label">Date and Time</label>
-                            <div class="col-sm-6">
-                              <input type="datetime-local" class="form-control" id="datetime" name="datetime">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                           <label for="services" class="col-sm-2 col-form-label">Services</label>
                           <div class="col-sm-6">
                             <select id="haha" class="form-select" name="services" onchange="calculatePrice()">
@@ -148,45 +142,53 @@
                             <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" readonly>
                             <input type="hidden" id="hiddenDeliveryFee" name="hiddenDeliveryFee" value="0">
                         </div>
+                        <div class="col-md-5 ps-5">
+                            <label for="datetime" class="form-label">Date and Time</label>
+                            <div class="row-md-6 ps-6">
+                              <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+                            </div>
                         </div>
-			<% if (qrCodeUrl) { %> <!-- Check if qrCodeUrl is not null -->
-		            <div class="row justify-content-center mt-4">
-		              <div class="col-md-6">
-		                <div class="border border-dark p-2 mb-2 border-opacity-50 rounded p-3">
-		                  <div class="text-center">
-		                    <img id="qrCode" src="<%= qrCodeUrl %>" alt="QR Code">
-		                  </div>
-		                  <div class="text-center mt-3">
-		                    <a href="#" onclick="downloadQRCode()" class="btn btn-primary">Download QR Code</a>
-		                  </div>
-		                </div>
-		              </div>
-		            </div>
-		            <% } %> <!-- End of QR code div -->  
+                        </div>
+
+                        <% if (qrCodeUrl) { %> <!-- Check if qrCodeUrl is not null -->
+                            <div class="row justify-content-center mt-4">
+                              <div class="col-md-6">
+                                <div class="border border-dark p-2 mb-2 border-opacity-50 rounded p-3">
+                                  <div class="text-center">
+                                    <img id="qrCode" src="<%= qrCodeUrl %>" alt="QR Code">
+                                  </div>
+                                  <div class="text-center mt-3">
+                                    <a href="#" onclick="downloadQRCode()" class="btn btn-primary">Download QR Code</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <% } %> <!-- End of QR code div --> 
+
                         <!--Submit button-->
                         <div class="text-center mx-auto mb-3 mt-3">
                             <button type="submit" class="btn btn-dark text-white" value="submit">Continue</button>
                         </div>
                     </form>
                 </div>
-    </div>
-  </section>
+        </div>
+    </section>
     
 <%- include('footer') -%>
 
 <script>
-  function downloadQRCode() {
-    // Get the QR code image element
-    var qrCodeImage = document.getElementById('qrCode');
-    
-    // Create a temporary anchor element to download the QR code
-    var link = document.createElement('a');
-    link.href = qrCodeImage.src;
-    link.download = 'qr-code.png';
-    
-    // Trigger the download
-    link.click();
-  }
+    function downloadQRCode() {
+      // Get the QR code image element
+      var qrCodeImage = document.getElementById('qrCode');
+      
+      // Create a temporary anchor element to download the QR code
+      var link = document.createElement('a');
+      link.href = qrCodeImage.src;
+      link.download = 'qr-code.png';
+      
+      // Trigger the download
+      link.click();
+    }
 </script>
 
 <script>
@@ -218,7 +220,7 @@
         }
       });
     });
-  </script>
+</script>
 
 <script>
     function calculatePrice() {
@@ -289,17 +291,13 @@
       deliveryFeeInput.value = totalWithDelivery.toFixed(2);
 
       // Update the hidden fields with the calculated values
-        var hiddenPriceInput = document.getElementById("hiddenPrice");
-        hiddenPriceInput.value = totalPrice.toFixed(2);
+      var hiddenPriceInput = document.getElementById("hiddenPrice");
+      hiddenPriceInput.value = totalPrice.toFixed(2);
 
-        var hiddenSubtotalInput = document.getElementById("hiddenSubtotal");
-        hiddenSubtotalInput.value = subtotal.toFixed(2);
+      var hiddenSubtotalInput = document.getElementById("hiddenSubtotal");
+      hiddenSubtotalInput.value = subtotal.toFixed(2);
 
-        var hiddenDeliveryFeeInput = document.getElementById("hiddenDeliveryFee");
-        hiddenDeliveryFeeInput.value = deliveryFee.toFixed(2);
+      var hiddenDeliveryFeeInput = document.getElementById("hiddenDeliveryFee");
+      hiddenDeliveryFeeInput.value = deliveryFee.toFixed(2);
     }
   </script>
-  
-  
-  
-  
