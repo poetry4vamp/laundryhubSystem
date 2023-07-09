@@ -89,23 +89,25 @@ router.post('/reservation', async (req, res) => {
         products,
         quantity,
         delivery,
-        price,
-        subtotal,
-        deliveryfee
+        datetime,
       } = req.body;
 
-      // Save the reservation data to the database
-      const reservation = await prisma.reservation.create({
+      const price = parseFloat(req.body.price);
+      const subtotal = parseFloat(req.body.subtotal);
+      const deliveryfee = parseFloat(req.body.deliveryfee);
+
+      const reserve = await prisma.reservation.create({
         data: {
           name,
           services,
           size,
           products,
           quantity,
-          price: parseFloat(price),
+          price: price || null,
           delivery,
-          subtotal: parseFloat(subtotal),
-          deliveryfee: parseFloat(deliveryfee)
+          subtotal: subtotal || null,
+          deliveryfee: deliveryfee || null,
+          datetime: new Date(datetime),
         },
       });
 
