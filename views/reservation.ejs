@@ -37,6 +37,12 @@
                           </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="datetime" class="col-sm-2 col-form-label">Date and Time</label>
+                            <div class="col-sm-6">
+                              <input type="datetime-local" class="form-control" id="datetime" name="datetime">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                           <label for="services" class="col-sm-2 col-form-label">Services</label>
                           <div class="col-sm-6">
                             <select id="haha" class="form-select" name="services" onchange="calculatePrice()">
@@ -142,12 +148,14 @@
                             <input type="text" class="form-control" id="deliveryfee" name="deliveryfee" readonly>
                             <input type="hidden" id="hiddenDeliveryFee" name="hiddenDeliveryFee" value="0">
                         </div>
-                        <div class="col-md-5 ps-5">
-                            <label for="datetime" class="form-label">Date and Time</label>
-                            <div class="row-md-6 ps-6">
-                              <input type="datetime-local" class="form-control" id="datetime" name="datetime">
-                            </div>
                         </div>
+
+                        <hr class="hr" />
+
+                        <div class="col-md-12">
+                            <div class="section-header pb-2">
+                                <h5><strong>QR Code</strong></h5>
+                            </div>
                         </div>
 
                     
