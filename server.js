@@ -29,7 +29,7 @@ app.use('/', router);
 
 // base route
 app.get('/', (req, res) =>{
-    res.render('base', { title : "Nandy Laundry Hub Admin System"});
+    res.render('home', { title : "Nandy Laundry Hub Admin System"});
 })
 
 app.listen(port, ()=>{ console.log("Listening to the server on http://localhost:3000")});
