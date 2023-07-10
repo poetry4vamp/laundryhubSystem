@@ -10,6 +10,11 @@ const credential = {
 
 const prisma = new PrismaClient();
 
+// Route for base/login
+router.get('/base', (req, res) => {
+    res.render('base');
+  });
+
 // Login user
 router.post('/login', (req, res) => {
   if (req.body.email == credential.email && req.body.password == credential.password) {
