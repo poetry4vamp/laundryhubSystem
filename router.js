@@ -27,7 +27,6 @@ router.post('/login', (req, res) => {
 
 // Route for dashboard
 router.get('/dashboard', async (req, res) => {
-  if (req.session.user) {
     try {
       // Retrieve the allreservations data from your database or source
       const allreservations = await getAllReservations(); // Replace with your logic to fetch reservations
@@ -39,9 +38,6 @@ router.get('/dashboard', async (req, res) => {
       console.error(error);
       res.status(500).send('Internal server error.');
     }
-  } else {
-    res.send("Unauthorized User.");
-  }
 });
 
 async function getAllReservations() {
@@ -56,39 +52,26 @@ async function getAllReservations() {
 
 // Route for charts
 router.get('/charts', (req, res) => {
-  if (req.session.user) {
     res.render('charts');
-  } else {
-    res.send("Unauthorized User.");
-  }
 });
 
 // Route for home
 router.get('/home', (req, res) => {
-  if (req.session.user) {
     res.render('home');
-  } else {
-    res.send("Unauthorized User.");
-  }
-});
+  });
 
 // Route for reservation
-router.get('/reservation', async (req, res) => {
-  if (req.session.user) {
-    try {
-      res.render('reservation', { qrCodeUrl: null }); // Set qrCodeUrl to null initially
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal server error.');
-    }
-  } else {
-    res.send("Unauthorized User.");
+router.get('/reservation', (req, res) => {
+  try {
+    res.render('reservation', { qrCodeUrl: null }); // Set qrCodeUrl to null initially
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error.');
   }
 });
 
 // Route for submitting reservation
 router.post('/reservation', async (req, res) => {
-  if (req.session.user) {
     try {
       const {
         name,
@@ -122,20 +105,21 @@ router.post('/reservation', async (req, res) => {
       // Generate the QR code
       const qrCodeData = JSON.stringify(req.body);
       const qrCodeUrl = await QRCode.toDataURL(qrCodeData);
+
       console.log('Reservation created successfully!');
-      res.render('reservation', { qrCodeUrl: qrCodeUrl, reservation: reservation });
+      // res.render('reservation', { qrCodeUrl: qrCodeUrl, reservation: reservation });
+
+      // Pass the qrCodeUrl to the reservation template
+      res.render('reservation', { qrCodeUrl });
+
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal server error.');
     }
-  } else {
-    res.send("Unauthorized User.");
-  }
-});
+  });
 
 // Route for deleting a reservation
 router.post('/reservation/delete', async (req, res) => {
-  if (req.session.user) {
     try {
       const reservationId = req.body.id;
 
@@ -152,9 +136,6 @@ router.post('/reservation/delete', async (req, res) => {
       console.error(error);
       res.status(500).send('Internal server error.');
     }
-  } else {
-    res.send("Unauthorized User.");
-  }
 });
 
 // Route for logout
